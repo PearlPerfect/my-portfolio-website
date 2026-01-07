@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Portfolio' %> | Portfolio</title>
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Full-stack developer portfolio showcasing projects in Node.js, TypeScript, and modern web technologies"
+    />
+    <meta
+      name="keywords"
+      content="developer, portfolio, Node.js, TypeScript, MongoDB, Express"
+    />
+    <meta name="author" content="PearlPerfect" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+       <a href="/" class="logo">
+    <div class="logo-container">
+        <div class="logo-circle">
+            <i class="fas fa-code"></i>
+        </div>
+        <div class="logo-text">
+            <span class="logo-first">Perfect</span>
+            <span class="logo-gradient">Pearl</span>
+        </div>
+    </div>
+</a>
+        <div class="nav-menu">
+          <a
+            href="/projects"
+            class="nav-link <%= currentPath.startsWith('/projects') && currentPath !== '/projects/hng' ? 'active' : '' %>"
+          >
+            <i class="fas fa-code"></i> Projects
+          </a>
+          <a
+            href="/projects/hng"
+            class="nav-link <%= currentPath === '/projects/hng' ? 'active' : '' %>"
+          >
+            <i class="fas fa-graduation-cap"></i> HNG Projects
+          </a>
+          <a
+            href="/about"
+            class="nav-link <%= currentPath === '/about' ? 'active' : '' %>"
+          >
+            <i class="fas fa-user"></i> About
+          </a>
+          <a
+            href="/contact"
+            class="nav-link <%= currentPath === '/contact' ? 'active' : '' %>"
+          >
+            <i class="fas fa-envelope"></i> Contact
+          </a>
+          <a
+            href="/api-docs"
+            class="nav-link <%= currentPath === '/api-docs' ? 'active' : '' %>"
+          >
+            <i class="fas fa-api"></i> API
+          </a>
+        </div>
+
+        <div class="nav-actions">
+          <button
+            id="themeToggle"
+            class="theme-toggle"
+            aria-label="Toggle theme"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <a
+          href="/"
+          class="mobile-nav-link <%= currentPath === '/' ? 'active' : '' %>"
+        >
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a
+          href="/projects"
+          class="mobile-nav-link <%= currentPath.startsWith('/projects') && currentPath !== '/projects/hng' ? 'active' : '' %>"
+        >
+          <i class="fas fa-code"></i> Projects
+        </a>
+        <a
+          href="/projects/hng"
+          class="mobile-nav-link <%= currentPath === '/projects/hng' ? 'active' : '' %>"
+        >
+          <i class="fas fa-graduation-cap"></i> HNG Projects
+        </a>
+        <a
+          href="/about"
+          class="mobile-nav-link <%= currentPath === '/about' ? 'active' : '' %>"
+        >
+          <i class="fas fa-user"></i> About
+        </a>
+        <a
+          href="/contact"
+          class="mobile-nav-link <%= currentPath === '/contact' ? 'active' : '' %>"
+        >
+          <i class="fas fa-envelope"></i> Contact
+        </a>
+        <a
+          href="/api-docs"
+          class="mobile-nav-link <%= currentPath === '/api-docs' ? 'active' : '' %>"
+        >
+          <i class="fas fa-api"></i> API
+        </a>
+        <button class="mobile-theme-toggle" id="mobileThemeToggle">
+          <i class="fas fa-moon"></i> Toggle Theme
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- This will be replaced by individual page content -->
+      <%- body %>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Portfolio</h3>
+            <p>
+              Full-stack developer specializing in Node.js, TypeScript, and
+              modern web technologies.
+            </p>
+            <div class="social-links">
+              <a
+                href="https://github.com/PearlPerfect"
+                target="_blank"
+                aria-label="GitHub"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/imo-udoh-747347197/"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="https://x.com/Tech_luver"
+                target="_blank"
+                aria-label="Twitter"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="/projects">All Projects</a></li>
+              <li><a href="/projects/hng">HNG Projects</a></li>
+              <li><a href="/api-docs">API Documentation</a></li>
+              <li><a href="/contact">Contact Me</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3>API Endpoints</h3>
+            <ul>
+              <li><a href="/api/me">Profile API</a></li>
+              <li><a href="/api/projects">Projects API</a></li>
+              <li><a href="/api/technologies">Technologies API</a></li>
+              <li><a href="/api/stats">Stats API</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; <%= year || new Date().getFullYear() %> PearlPerfect. All rights
+            reserved.
+          </p>
+          <!-- <p>Built with Node.js, TypeScript, Express, and MongoDB</p> -->
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/js/main.js"></script>
+  </body>
+</html>

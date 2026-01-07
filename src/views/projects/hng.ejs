@@ -1,0 +1,362 @@
+<section class="section">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">HNG Internship Projects</h1>
+            <p class="page-subtitle">Projects completed during the HNG internship stages</p>
+        </div>
+        
+        <% if (stages && stages.length > 0) { %>
+            <% stages.forEach(stage => { %>
+                <div class="stage-section">
+                    <h2 class="stage-title">Stage <%= stage %></h2>
+                    <div class="hng-projects-grid">
+                        <% 
+                            const stageProjects = projects.filter(p => p.stage === stage);
+                            if (stageProjects.length > 0) {
+                                stageProjects.forEach(project => { 
+                        %>
+                            <div class="hng-project-card">
+                                <div class="hng-project-header">
+                                    <!-- Badges on top - HNG Type first, Status last -->
+                                    <div class="hng-project-badges">
+                                        <!-- HNG Type badge - displayed first -->
+                                        <span class="hng-project-badge type-hng">
+                                            <i class="fas fa-tag"></i> HNG
+                                        </span>
+                                        
+                                        <!-- Stage badge - displayed second -->
+                                        <span class="hng-project-badge stage-<%= project.stage %>">
+                                            <i class="fas fa-step-forward"></i> Stage <%= project.stage %>
+                                        </span>
+                                        
+                                        <!-- Status badge - displayed last -->
+                                        <span class="hng-project-badge status-<%= project.status %>">
+                                            <i class="fas fa-circle"></i> <%= project.status %>
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- Logo/Icon in the center -->
+                                    <div class="hng-project-icon">
+                                        <% if (project.category === 'api') { %>
+                                            <i class="fas fa-code"></i>
+                                        <% } else if (project.category === 'web') { %>
+                                            <i class="fas fa-globe"></i>
+                                        <% } else if (project.category === 'mobile') { %>
+                                            <i class="fas fa-mobile-alt"></i>
+                                        <% } else if (project.category === 'ai') { %>
+                                            <i class="fas fa-brain"></i>
+                                        <% } else if (project.category === 'microservice') { %>
+                                            <i class="fas fa-server"></i>
+                                        <% } else if (project.category === 'authentication') { %>
+                                            <i class="fas fa-shield-alt"></i>
+                                        <% } else if (project.category === 'payment') { %>
+                                            <i class="fas fa-credit-card"></i>
+                                        <% } else { %>
+                                            <i class="fas fa-project-diagram"></i>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                
+                                <div class="hng-project-body">
+                                    <h3 class="hng-project-title">
+                                        <a href="/projects/<%= project.slug %>"><%= project.title %></a>
+                                    </h3>
+                                    <p class="hng-project-description"><%= project.description %></p>
+                                    
+                                    <div class="hng-project-meta">
+                                        <span class="hng-meta-item">
+                                            <i class="fas fa-tag"></i>
+                                            <%= project.category %>
+                                        </span>
+                                        <span class="hng-meta-item">
+                                            <i class="fas fa-layer-group"></i>
+                                            <%= project.complexity %>
+                                        </span>
+                                    </div>
+                                    
+                                    <% if (project.features && project.features.length > 0) { %>
+                                        <div class="hng-project-features">
+                                            <% project.features.slice(0, 2).forEach(feature => { %>
+                                                <span class="hng-feature-item">
+                                                    <i class="fas fa-check-circle"></i> <%= feature %>
+                                                </span>
+                                            <% }) %>
+                                        </div>
+                                    <% } %>
+                                    
+                                    <% if (project.technologies && project.technologies.length > 0) { %>
+                                        <div class="hng-project-technologies">
+                                            <% project.technologies.slice(0, 3).forEach(tech => { %>
+                                                <span class="tech-tag-sm"><%= tech %></span>
+                                            <% }) %>
+                                            <% if (project.technologies.length > 3) { %>
+                                                <span class="tech-tag-sm">+<%= project.technologies.length - 3 %></span>
+                                            <% } %>
+                                        </div>
+                                    <% } %>
+                                </div>
+                                
+                                <div class="hng-project-actions">
+                                    <a href="/projects/<%= project.slug %>" class="btn btn-sm">
+                                        <i class="fas fa-eye"></i> Details
+                                    </a>
+                                    <% if (project.githubUrl) { %>
+                                        <a href="<%= project.githubUrl %>" target="_blank" class="btn btn-sm btn-secondary">
+                                            <i class="fab fa-github"></i> Code
+                                        </a>
+                                    <% } %>
+                                    <% if (project.liveDemoUrl) { %>
+                                        <a href="<%= project.liveDemoUrl %>" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-external-link-alt"></i> Demo
+                                        </a>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% }); } else { %>
+                            <div class="empty-state">
+                                <i class="fas fa-folder-open"></i>
+                                <p>No projects found for Stage <%= stage %></p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <div class="empty-state">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>No HNG projects found</h3>
+                <p>Check back later for HNG internship projects</p>
+            </div>
+        <% } %>
+    </div>
+</section>
+
+<style>
+.stage-section {
+    margin-bottom: 3rem;
+}
+
+.stage-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* HNG Projects Grid - Flex layout */
+.hng-projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.hng-project-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hng-project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.hng-project-header {
+    position: relative;
+    height: 80px;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--border-color) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.hng-project-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.hng-project-badges {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    z-index: 2;
+}
+
+.hng-project-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: nowrap;
+    order: 1; /* Default order for all badges */
+}
+
+.hng-project-badge i {
+    font-size: 0.6rem;
+}
+
+/* HNG Type badge - order 1 (first) */
+.hng-project-badge.type-hng {
+    order: 1;
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Stage badges - order 2 (after type, before status) */
+.hng-project-badge[class*="stage-"] {
+    order: 2;
+}
+
+/* Status badge - order 3 (last) */
+.hng-project-badge.status-completed,
+.hng-project-badge.status-in-progress,
+.hng-project-badge.status-planned {
+    order: 3;
+    margin-left: auto; /* Pushes status to the right */
+}
+
+.hng-project-badge.status-completed {
+    background-color: #10b981;
+    color: white;
+}
+
+.hng-project-badge.status-in-progress {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.hng-project-badge.status-planned {
+    background-color: #6b7280;
+    color: white;
+}
+
+/* Stage colors */
+.hng-project-badge.stage-0 { background-color: #3b82f6; color: white; }
+.hng-project-badge.stage-1 { background-color: #10b981; color: white; }
+.hng-project-badge.stage-2 { background-color: #8b5cf6; color: white; }
+.hng-project-badge.stage-3 { background-color: #f59e0b; color: white; }
+.hng-project-badge.stage-4 { background-color: #ef4444; color: white; }
+.hng-project-badge.stage-5 { background-color: #6366f1; color: white; }
+.hng-project-badge.stage-6 { background-color: #14b8a6; color: white; }
+.hng-project-badge.stage-7 { background-color: #f97316; color: white; }
+.hng-project-badge.stage-8 { background-color: #8b5cf6; color: white; }
+.hng-project-badge.stage-9 { background-color: #3b82f6; color: white; }
+
+.hng-project-body {
+    padding: 1.5rem;
+}
+
+.hng-project-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.hng-project-title a {
+    color: var(--text-color);
+}
+
+.hng-project-title a:hover {
+    color: var(--primary-color);
+}
+
+.hng-project-description {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.hng-project-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.hng-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+.hng-project-features {
+    margin-bottom: 1rem;
+}
+
+.hng-feature-item {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+
+.hng-feature-item i {
+    color: #10b981;
+    margin-right: 0.5rem;
+}
+
+.hng-project-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tech-tag-sm {
+    background-color: var(--bg-tertiary);
+    color: var(--text-color);
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.hng-project-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .hng-projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+    .hng-project-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .hng-project-actions {
+        flex-direction: column;
+    }
+    
+    .hng-project-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+</style>

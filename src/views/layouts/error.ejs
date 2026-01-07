@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || 'Error' %> | Portfolio</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Simple header for error pages -->
+    <header class="error-header">
+        <div class="container">
+            <a href="/" class="error-logo">Portfolio</a>
+        </div>
+    </header>
+
+    <!-- Error Content -->
+    <main class="main-content">
+        <%- body %>
+    </main>
+
+    <!-- Simple footer -->
+    <footer class="error-footer">
+        <div class="container">
+            <p>&copy; <%= new Date().getFullYear() %> Portfolio</p>
+        </div>
+    </footer>
+
+    <style>
+    .error-header {
+        background-color: var(--card-bg);
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+    }
+    
+    .error-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+    
+    .error-footer {
+        text-align: center;
+        padding: 2rem 0;
+        color: var(--text-light);
+        border-top: 1px solid var(--border-color);
+    }
+    </style>
+</body>
+</html>

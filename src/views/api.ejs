@@ -1,0 +1,263 @@
+<section class="section">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">API Documentation</h1>
+            <p class="page-subtitle">Programmatic access to portfolio data</p>
+        </div>
+        
+        <div class="api-docs">
+            <div class="api-intro">
+                <p>This portfolio website provides RESTful API endpoints for accessing project and technology data programmatically. All endpoints return JSON responses.</p>
+            </div>
+            
+            <div class="api-endpoints">
+                <h2>Available Endpoints</h2>
+                
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method get">GET</span>
+                        <code class="endpoint-path">/api/me</code>
+                    </div>
+                    <div class="endpoint-body">
+                        <p>Get profile information with a dynamic cat fact.</p>
+                        <div class="endpoint-example">
+                            <h4>Example Response:</h4>
+                            <pre><code>{
+  "status": "success",
+  "user": {
+    "email": "developer@example.com",
+    "name": "PearlPerfect",
+    "stack": "Backend Developer"
+  },
+  "timestamp": "2024-01-01T12:00:00.000Z",
+  "fact": "Cats are awesome!"
+}</code></pre>
+                        </div>
+                        <a href="/api/me" target="_blank" class="btn btn-sm">
+                            <i class="fas fa-external-link-alt"></i> Try it
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method get">GET</span>
+                        <code class="endpoint-path">/api/projects</code>
+                    </div>
+                    <div class="endpoint-body">
+                        <p>Get all projects with optional filtering.</p>
+                        <h4>Query Parameters:</h4>
+                        <ul>
+                            <li><code>category</code> - Filter by category (api, web, mobile, etc.)</li>
+                            <li><code>type</code> - Filter by type (hng, personal, client, open-source)</li>
+                            <li><code>status</code> - Filter by status (completed, in-progress, planned)</li>
+                            <li><code>search</code> - Search in title and description</li>
+                        </ul>
+                        <div class="endpoint-example">
+                            <h4>Example:</h4>
+                            <code>/api/projects?category=api&type=hng</code>
+                        </div>
+                        <a href="/api/projects" target="_blank" class="btn btn-sm">
+                            <i class="fas fa-external-link-alt"></i> Try it
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method get">GET</span>
+                        <code class="endpoint-path">/api/projects/:slug</code>
+                    </div>
+                    <div class="endpoint-body">
+                        <p>Get a specific project by its slug.</p>
+                        <div class="endpoint-example">
+                            <h4>Example:</h4>
+                            <code>/api/projects/dynamic-profile-api</code>
+                        </div>
+                        <a href="/api/projects/dynamic-profile-api" target="_blank" class="btn btn-sm">
+                            <i class="fas fa-external-link-alt"></i> Try it
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method get">GET</span>
+                        <code class="endpoint-path">/api/technologies</code>
+                    </div>
+                    <div class="endpoint-body">
+                        <p>Get all technologies with proficiency ratings.</p>
+                        <a href="/api/technologies" target="_blank" class="btn btn-sm">
+                            <i class="fas fa-external-link-alt"></i> Try it
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method get">GET</span>
+                        <code class="endpoint-path">/api/stats</code>
+                    </div>
+                    <div class="endpoint-body">
+                        <p>Get portfolio statistics.</p>
+                        <a href="/api/stats" target="_blank" class="btn btn-sm">
+                            <i class="fas fa-external-link-alt"></i> Try it
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="api-usage">
+                <h2>Usage Examples</h2>
+                
+                <div class="usage-example">
+                    <h3>JavaScript Fetch</h3>
+                    <pre><code>fetch('/api/projects')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));</code></pre>
+                </div>
+                
+                <div class="usage-example">
+                    <h3>cURL</h3>
+                    <pre><code>curl http://localhost:3000/api/projects</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.api-docs {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.api-intro {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.api-endpoints h2,
+.api-usage h2 {
+    font-size: 1.75rem;
+    margin: 2rem 0 1.5rem;
+    color: var(--primary-color);
+}
+
+.endpoint-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.endpoint-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.method {
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-right: 1rem;
+}
+
+.method.get {
+    background-color: #10b981;
+    color: white;
+}
+
+.method.post {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.endpoint-path {
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.endpoint-body {
+    padding: 1.5rem;
+}
+
+.endpoint-body h4 {
+    font-size: 1rem;
+    margin: 1rem 0 0.5rem;
+    color: var(--text-color);
+}
+
+.endpoint-body ul {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.5rem;
+}
+
+.endpoint-body li {
+    margin-bottom: 0.25rem;
+}
+
+.endpoint-body code {
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    background-color: var(--bg-tertiary);
+    padding: 0.125rem 0.25rem;
+    border-radius: var(--radius-sm);
+}
+
+.endpoint-example {
+    background-color: var(--bg-tertiary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.endpoint-example pre {
+    margin: 0;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.api-usage {
+    margin-top: 3rem;
+}
+
+.usage-example {
+    margin-bottom: 2rem;
+}
+
+.usage-example h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.usage-example pre {
+    background-color: var(--bg-tertiary);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: 0;
+}
+
+.usage-example code {
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+</style>

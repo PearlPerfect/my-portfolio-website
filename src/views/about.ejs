@@ -1,0 +1,744 @@
+<section class="section">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">About Me</h1>
+            <p class="page-subtitle">Full Stack Engineer specializing in distributed systems, fintech, and complete application development</p>
+        </div>
+        
+        <div class="about-content">
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <div class="profile-image-container">
+                    <img src="/images/profile.jpeg" alt="PearlPerfect" class="profile-image">
+                    <div class="profile-overlay">
+                        <h3>PearlPerfect</h3>
+                        <p>Fullstack Engineer</p>
+                    </div>
+                </div>
+                
+                <div class="profile-info">
+                    <h2>Fullstack Engineer & Instructor</h2>
+                    <p>I develop complete applications with a strong focus on scalable backend systems (Node.js, TypeScript, NestJS, Python, Django, fastApi) and modern frontend technologies (React, Next.js, TypeScript, vue.js). My expertise bridges distributed systems, fintech integrations, and responsive UI development, creating end-to-end solutions that perform at scale while providing seamless user experiences.</p>
+                    
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <div class="stat-number"><%= stats?.totalProjects || 0 %></div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <a href="/contact" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i> Contact Me
+                        </a>
+                        <a href="/projects" class="btn btn-secondary">
+                            <i class="fas fa-code"></i> View Projects
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experience Section -->
+            <div class="about-section">
+                <h2>Professional Experience</h2>
+                
+                <div class="experience-timeline">
+                    <!-- Current Role -->
+                    <div class="experience-item current">
+                        <div class="experience-header">
+                            <h3>Backend Engineering Intern</h3>
+                            <span class="company">HNG i13</span>
+                            <span class="date">2025</span>
+                        </div>
+                        <div class="experience-content">
+                            <ul class="achievements">
+                                <li>
+                                    <strong>Microservices & Distributed Systems:</strong> Architected a high-performance notification 
+                                    system using NestJS and RabbitMQ, implementing asynchronous message queuing for 
+                                    1,000+ notifications/min.
+                                </li>
+                                <li>
+                                    <strong>Fintech & Payments:</strong> Engineered a secure Wallet Service with Paystack integration, 
+                                    featuring atomic transactions to prevent double-spending and a mandatory webhook 
+                                    verification system.
+                                </li>
+                                <li>
+                                    <strong>Security & Auth:</strong> Built a hybrid authentication system supporting JWT (Google OAuth) 
+                                    and a custom HMAC-hashed API Key system with granular permissions and expiration 
+                                    logic.
+                                </li>
+                                <li>
+                                    <strong>AI Orchestration:</strong> Developed an intelligent Holiday Reminder Agent using the Mastra 
+                                    framework and Groq (Llama 3.1), integrated with Telex.im via the A2A protocol.
+                                </li>
+                                <li>
+                                    <strong>System Reliability:</strong> Implemented Circuit Breaker patterns, exponential backoff retries 
+                                    with Dead Letter Queues, and service discovery to ensure 99.5% delivery success rates.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Backend Instructor -->
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3>Backend Instructor</h3>
+                            <span class="company">FutureLabs, Ikot Ekpene</span>
+                            <span class="date">Jan 2025 – Dec 2025</span>
+                        </div>
+                        <div class="experience-content">
+                            <ul class="achievements">
+                                <li>Lead instructor for Node.js, Nest.js, and Django, guiding students through the 
+                                    complexities of server-side logic and database management.</li>
+                                <li>Mentored learners on industry best practices, including Clean Architecture, SOLID 
+                                    principles, and secure API design.</li>
+                                <li>Developed a backend curriculum focused on real-world scalability and performance 
+                                    optimization.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Frontend Tutor -->
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3>Frontend Tutor</h3>
+                            <span class="company">FutureLabs, Ikot Ekpene</span>
+                            <span class="date">Jan 2024 – Jan 2025</span>
+                        </div>
+                        <div class="experience-content">
+                            <ul class="achievements">
+                                <li>Delivered structured frontend classes covering HTML, CSS, and JavaScript fundamentals.</li>
+                                <li>Designed project-based lessons and real-world coding exercises.</li>
+                                <li>Provided one-on-one and group feedback and tracked student progress.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Software Engineering Intern -->
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3>Software Engineering Intern (Fullstack)</h3>
+                            <span class="company">FutureLabs</span>
+                            <span class="date">Mar 2023 – Nov 2023</span>
+                        </div>
+                        <div class="experience-content">
+                            <ul class="achievements">
+                                <li>Developed RESTful APIs using Node.js and Nest.js, focusing on high availability and 
+                                    secure data handling.</li>
+                                <li>Integrated third-party APIs and managed complex database relationships to support 
+                                    dynamic frontend interfaces.</li>
+                                <li>Contributed to the transition from manual deployments to more structured Git 
+                                    workflows, improving team collaboration.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certifications Section -->
+            <div class="about-section">
+                <h2>Certifications</h2>
+                
+                <div class="certifications-grid">
+                    <!-- Data Science & Research -->
+                    <div class="certification-category">
+                        <h3>Data Science & Research</h3>
+                        <div class="certification-items">
+                            <div class="certification-item">
+                                <h4>Fundamentals of Data Science in Precision Medicine and Cloud Computing</h4>
+                                <p class="institution">Stanford Data Ocean (2025)</p>
+                                <a href="https://drive.google.com/file/d/14UP1NESzMgIgdv7HuFhNllOQXVH39cnW/view?usp=sharing" class="cert-link" data-cert="stanford-data-science">
+                                    <i class="fas fa-external-link-alt"></i> View Certificate
+                                </a>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <h4>Fundamentals of AI/ML in Precision Medicine</h4>
+                                <p class="institution">Stanford Data Ocean (2025)</p>
+                                <a href="https://drive.google.com/file/d/1fxGVXIy0ANWw_eKDSjM40JkdGMBdiXsE/view?usp=sharing" class="cert-link" data-cert="stanford-ai-ml">
+                                    <i class="fas fa-external-link-alt"></i> View Certificate
+                                </a>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <h4>Writing in Science</h4>
+                                <p class="institution">Coursera</p>
+                                <a href="https://drive.google.com/file/d/142LDrQhKh6qYeN1hPmCp8AOc0rXcMeqC/view?usp=sharing" class="cert-link" data-cert="coursera-writing-science">
+                                    <i class="fas fa-external-link-alt"></i> View Certificate
+                                </a>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <h4>Python for Data Science, AI & Development</h4>
+                                <p class="institution">IBM (Coursera)</p>
+                                <a href="#" class="cert-link" data-cert="ibm-python-datascience">
+                                    <i class="fas fa-external-link-alt"></i> View Certificate
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Engineering & Technology -->
+                    <div class="certification-category">
+                        <h3>Engineering & Technology</h3>
+                        <div class="certification-items">
+                            <div class="certification-item">
+                                <h4>HNG Internship Certificate — Backend Engineering</h4>
+                                <p class="institution">HNG Internship</p>
+                                <a href="https://drive.google.com/file/d/1YvDAVx8FGQaPe9-QoYjUvaphxgvBxZC7/view?usp=sharing" class="cert-link" data-cert="hng-backend">
+                                    <i class="fas fa-external-link-alt"></i> View Certificate
+                                </a>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <h4>Proficiency in Software Engineering</h4>
+                                <p class="institution">ALX Software Engineering School</p>
+                                <a href="https://drive.google.com/file/d/1q80PUQ-8Ru6eWREuWaxZY02RR3T9TQtB/view?usp=sharing" class="cert-link" data-cert="alx-software-engineering">
+                                    <i class="fas fa-external-link-alt"></i> View Certificate
+                                </a>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <h4>Proficiency in Backend Development</h4>
+                                <p class="institution">FutureLabs, Ikot Ekpene</p>
+                                <a href="#" class="cert-link" data-cert="futurelabs-backend">
+                                    <i class="fas fa-external-link-alt"></i> View Certificate
+                                </a>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <h4>Learn Python: Python Fundamentals for Beginners</h4>
+                                <p class="institution">Coursera</p>
+                                <a href="#" class="cert-link" data-cert="Coursera">
+                                    <i class="fas fa-external-link-alt"></i> View Certificate
+                                </a>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <h4>African Girls in Tech Bootcamp 7.0</h4>
+                                <p class="institution">Africa Agility</p>
+                                <a href="https://drive.google.com/file/d/1m0tHjpqJ5kNWllSHds0kQlu4A2stwT_d/view?usp=sharing" class="cert-link" data-cert="africa-agility">
+                                    <i class="fas fa-external-link-alt"></i> View Certificate
+                                </a>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <h4>Women Techsters Software Engineering Bootcamp</h4>
+                                <p class="institution">Women Techsters Initiative</p>
+                                <a href="#" class="cert-link" data-cert="women-techsters">
+                                    <i class="fas fa-external-link-alt"></i> View Certificate
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Skills Section -->
+            <% if (technologies && technologies.length > 0) { %>
+                <div class="about-section">
+                    <h2>Technical Skills</h2>
+                    <div class="skills-grid">
+                        <% technologies.forEach(tech => { %>
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fab fa-<%= tech.icon %>"></i>
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-name"><%= tech.name %></div>
+                                    <div class="skill-proficiency">
+                                        <div class="proficiency-dots">
+                                            <% for(let i = 1; i <= 5; i++) { %>
+                                                <span class="dot <%= i <= tech.proficiency ? 'active' : '' %>"></span>
+                                            <% } %>
+                                        </div>
+                                        <span class="proficiency-text"><%= tech.proficiency %>/5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+            <% } %>
+            
+            <!-- Contact Section -->
+            <div class="about-section contact-section">
+                <h2>Get In Touch</h2>
+                <p>Interested in collaborating on backend projects, discussing system architecture, or exploring opportunities? Feel free to reach out!</p>
+                <div class="contact-actions">
+                    <a href="/contact" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Send Message
+                    </a>
+                    <a href="/projects" class="btn btn-secondary">
+                        <i class="fas fa-code"></i> View My Work
+                    </a>
+                    <a href="https://github.com/PearlPerfect" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> GitHub Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Profile Section */
+.profile-section {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.profile-image-container {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 300px;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.profile-overlay h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.profile-overlay p {
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+
+.profile-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.profile-info p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Experience Section */
+.experience-timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--primary-color);
+    opacity: 0.3;
+}
+
+.experience-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 2rem;
+}
+
+.experience-item.current {
+    border-left: 3px solid var(--primary-color);
+    padding-left: calc(2rem - 3px);
+}
+
+.experience-item::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    border: 3px solid var(--primary-color);
+    z-index: 1;
+}
+
+.experience-item.current::before {
+    background-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(58, 134, 255, 0.2);
+}
+
+.experience-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.experience-header h3 {
+    font-size: 1.25rem;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.company {
+    background-color: var(--bg-tertiary);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.date {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin-left: auto;
+}
+
+.achievements {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.achievements li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.achievements li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.achievements strong {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* Certifications Section */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.certification-category {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.certification-category h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.certification-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.certification-item {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.certification-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.certification-item h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.institution {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.cert-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.cert-link:hover {
+    color: var(--secondary-color);
+}
+
+.cert-link i {
+    font-size: 0.8rem;
+}
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--card-bg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-2px);
+}
+
+.skill-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+}
+
+.skill-info {
+    flex: 1;
+}
+
+.skill-name {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.skill-proficiency {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.proficiency-dots {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+}
+
+.dot.active {
+    background-color: var(--primary-color);
+}
+
+.proficiency-text {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+    background-color: var(--card-bg);
+    padding: 3rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.contact-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.contact-section p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    color: var(--text-light);
+}
+
+.contact-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .profile-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .profile-image-container {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-stats {
+        gap: 1.5rem;
+    }
+    
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .date {
+        margin-left: 0;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-actions .btn {
+        width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .profile-actions {
+        flex-direction: column;
+    }
+    
+    .profile-actions .btn {
+        width: 100%;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle certificate links
+    const certLinks = document.querySelectorAll('.cert-link');
+    
+    // You can add actual URLs here when you have them
+    const certUrls = {
+        'stanford-data-science': '#',
+        'stanford-ai-ml': '#',
+        'coursera-writing-science': '#',
+        'ibm-python-datascience': '#',
+        'hng-backend': '#',
+        'alx-software-engineering': '#',
+        'futurelabs-backend': '#',
+        'udemy-python': '#',
+        'africa-agility': '#',
+        'women-techsters': '#'
+    };
+    
+    certLinks.forEach(link => {
+        const certId = link.getAttribute('data-cert');
+        if (certUrls[certId]) {
+            link.href = certUrls[certId];
+        }
+        
+        // Show placeholder message if no URL
+        link.addEventListener('click', function(e) {
+            if (this.href === '#') {
+                e.preventDefault();
+                alert('Certificate link will be added when available. You can upload your certificates to Google Drive/Dropbox and update the links.');
+            }
+        });
+    });
+});
+</script>

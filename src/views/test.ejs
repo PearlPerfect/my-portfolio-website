@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>✅ Test Page - Portfolio Website</h1>
+    
+    <div class="info">
+        <p>If you can see this page, EJS is working correctly!</p>
+    </div>
+    
+    <h2>Available Pages:</h2>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/projects/hng">HNG Projects</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/api-docs">API Documentation</a></li>
+    </ul>
+    
+    <h2>API Endpoints:</h2>
+    <ul>
+        <li><a href="/api/me" target="_blank">/api/me</a> - Profile API</li>
+        <li><a href="/api/projects" target="_blank">/api/projects</a> - Projects API</li>
+        <li><a href="/api/technologies" target="_blank">/api/technologies</a> - Technologies API</li>
+    </ul>
+    
+    <h2>Debug Info:</h2>
+    <pre><code>Title: <%= title || 'No title' %>
+Current Path: <%= currentPath || '/' %>
+Environment: <%= NODE_ENV || 'development' %>
+Year: <%= year || new Date().getFullYear() %></code></pre>
+    
+    <p class="success">✅ All view files are now created and should work!</p>
+</body>
+</html>

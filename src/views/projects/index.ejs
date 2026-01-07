@@ -1,0 +1,381 @@
+<section class="section">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">All Projects</h1>
+            <p class="page-subtitle">Browse through my collection of projects</p>
+        </div>
+        
+        <!-- Filters -->
+        <div class="filters-card">
+            <form method="GET" class="filters-form">
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label for="category" class="filter-label">
+                            <i class="fas fa-filter"></i> Category
+                        </label>
+                        <select id="category" name="category" class="filter-select">
+                            <option value="">All Categories</option>
+                            <% if (categories && categories.length > 0) { %>
+                                <% categories.forEach(category => { %>
+                                    <option value="<%= category %>" 
+                                        <%= filters.category === category ? 'selected' : '' %>>
+                                        <%= category %>
+                                    </option>
+                                <% }) %>
+                            <% } %>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="type" class="filter-label">
+                            <i class="fas fa-tag"></i> Type
+                        </label>
+                        <select id="type" name="type" class="filter-select">
+                            <option value="">All Types</option>
+                            <% if (types && types.length > 0) { %>
+                                <% types.forEach(type => { %>
+                                    <option value="<%= type %>" 
+                                        <%= filters.type === type ? 'selected' : '' %>>
+                                        <%= type %>
+                                    </option>
+                                <% }) %>
+                            <% } %>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="status" class="filter-label">
+                            <i class="fas fa-circle"></i> Status
+                        </label>
+                        <select id="status" name="status" class="filter-select">
+                            <option value="">All Status</option>
+                            <option value="completed" <%= filters.status === 'completed' ? 'selected' : '' %>>Completed</option>
+                            <option value="in-progress" <%= filters.status === 'in-progress' ? 'selected' : '' %>>In Progress</option>
+                            <option value="planned" <%= filters.status === 'planned' ? 'selected' : '' %>>Planned</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="search" class="filter-label">
+                            <i class="fas fa-search"></i> Search
+                        </label>
+                        <input type="text" id="search" name="search" 
+                               class="filter-input" placeholder="Search projects..."
+                               value="<%= filters.search || '' %>">
+                    </div>
+                </div>
+                
+                <div class="filters-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-filter"></i> Apply Filters
+                    </button>
+                    <a href="/projects" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Clear Filters
+                    </a>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Projects Grid -->
+        <% if (projects && projects.length > 0) { %>
+            <div class="projects-grid">
+                <% projects.forEach(project => { %>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <!-- Badges on top - Category/Type first, Status last -->
+                            <div class="project-badges">
+                                <!-- Category/Type badges - displayed first -->
+                                <% if (project.type) { %>
+                                    <span class="project-badge type-<%= project.type %>">
+                                        <i class="fas fa-tag"></i> <%= project.type %>
+                                    </span>
+                                <% } %>
+                                
+                                <!-- Stage badges (for HNG projects) -->
+                                <% if (project.stage) { %>
+                                    <span class="project-badge stage-<%= project.stage %>">
+                                        <i class="fas fa-step-forward"></i> Stage <%= project.stage %>
+                                    </span>
+                                <% } %>
+                                
+                                <!-- Status badge - displayed last -->
+                                <span class="project-badge status-<%= project.status %>">
+                                    <i class="fas fa-circle"></i> <%= project.status %>
+                                </span>
+                            </div>
+                            
+                            <!-- Logo/Icon in the center -->
+                            <div class="project-icon">
+                                <% if (project.category === 'api') { %>
+                                    <i class="fas fa-code"></i>
+                                <% } else if (project.category === 'web') { %>
+                                    <i class="fas fa-globe"></i>
+                                <% } else if (project.category === 'mobile') { %>
+                                    <i class="fas fa-mobile-alt"></i>
+                                <% } else if (project.category === 'ai') { %>
+                                    <i class="fas fa-brain"></i>
+                                <% } else if (project.category === 'microservice') { %>
+                                    <i class="fas fa-server"></i>
+                                <% } else if (project.category === 'authentication') { %>
+                                    <i class="fas fa-shield-alt"></i>
+                                <% } else if (project.category === 'payment') { %>
+                                    <i class="fas fa-credit-card"></i>
+                                <% } else if (project.category === 'tool') { %>
+                                    <i class="fas fa-tools"></i>
+                                <% } else if (project.category === 'database') { %>
+                                    <i class="fas fa-database"></i>
+                                <% } else { %>
+                                    <i class="fas fa-project-diagram"></i>
+                                <% } %>
+                            </div>
+                        </div>
+                        
+                        <div class="project-body">
+                            <h3 class="project-title">
+                                <a href="/projects/<%= project.slug %>"><%= project.title %></a>
+                            </h3>
+                            <p class="project-description"><%= project.description %></p>
+                            
+                            <div class="project-technologies">
+                                <% if (project.technologies && project.technologies.length > 0) { %>
+                                    <% project.technologies.slice(0, 3).forEach(tech => { %>
+                                        <span class="tech-tag"><%= tech %></span>
+                                    <% }) %>
+                                    <% if (project.technologies.length > 3) { %>
+                                        <span class="tech-tag">+<%= project.technologies.length - 3 %></span>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                            
+                            <div class="project-meta">
+                                <span class="meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <%= project.createdAt.toLocaleDateString() %>
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-layer-group"></i>
+                                    <%= project.complexity %>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-actions">
+                            <a href="/projects/<%= project.slug %>" class="btn btn-sm">
+                                <i class="fas fa-eye"></i> Details
+                            </a>
+                            <% if (project.githubUrl) { %>
+                                <a href="<%= project.githubUrl %>" target="_blank" class="btn btn-sm btn-secondary">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% } else { %>
+            <div class="empty-state">
+                <i class="fas fa-search"></i>
+                <h3>No projects found</h3>
+                <p>Try adjusting your filters or search terms</p>
+                <a href="/projects" class="btn btn-primary">Clear Filters</a>
+            </div>
+        <% } %>
+    </div>
+</section>
+
+<style>
+.project-header {
+    position: relative;
+    height: 100px;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--border-color) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.project-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.project-badges {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    z-index: 2;
+}
+
+.project-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: nowrap;
+    order: 1; /* Default order for all badges */
+}
+
+.project-badge i {
+    font-size: 0.6rem;
+}
+
+/* Category/Type badges - order 1 (first) */
+.project-badge.type-hng,
+.project-badge.type-personal,
+.project-badge.type-client,
+.project-badge.type-open-source {
+    order: 1;
+}
+
+/* Stage badges - order 2 (after type, before status) */
+.project-badge[class*="stage-"] {
+    order: 2;
+}
+
+/* Status badge - order 3 (last) */
+.project-badge.status-completed,
+.project-badge.status-in-progress,
+.project-badge.status-planned {
+    order: 3;
+    margin-left: auto; /* Pushes status to the right */
+}
+
+/* HNG-specific styling for stage badges */
+.project-badge.type-hng + .project-badge[class*="stage-"] {
+    background-color: #3b82f6; /* Blue for HNG stages */
+    color: white;
+}
+
+.project-badge.status-completed {
+    background-color: #10b981;
+    color: white;
+}
+
+.project-badge.status-in-progress {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.project-badge.status-planned {
+    background-color: #6b7280;
+    color: white;
+}
+
+.project-badge.type-hng {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.project-badge.type-personal {
+    background-color: #8b5cf6;
+    color: white;
+}
+
+.project-badge.type-client {
+    background-color: #ef4444;
+    color: white;
+}
+
+.project-badge.type-open-source {
+    background-color: #f59e0b;
+    color: white;
+}
+
+/* Stage colors for consistent styling */
+.project-badge.stage-0 { background-color: #3b82f6; color: white; }
+.project-badge.stage-1 { background-color: #10b981; color: white; }
+.project-badge.stage-2 { background-color: #8b5cf6; color: white; }
+.project-badge.stage-3 { background-color: #f59e0b; color: white; }
+.project-badge.stage-4 { background-color: #ef4444; color: white; }
+.project-badge.stage-5 { background-color: #6366f1; color: white; }
+.project-badge.stage-6 { background-color: #14b8a6; color: white; }
+.project-badge.stage-7 { background-color: #f97316; color: white; }
+.project-badge.stage-8 { background-color: #8b5cf6; color: white; }
+.project-badge.stage-9 { background-color: #3b82f6; color: white; }
+
+.project-body {
+    padding: var(--spacing-lg);
+}
+
+.project-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+}
+
+.project-title a {
+    color: var(--text-color);
+}
+
+.project-title a:hover {
+    color: var(--primary-color);
+}
+
+.project-description {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.project-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.tech-tag {
+    background-color: var(--bg-tertiary);
+    color: var(--text-color);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+}
+
+.project-meta {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--text-light);
+    font-size: var(--font-size-sm);
+}
+
+.project-actions {
+    padding: 0 var(--spacing-lg) var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* Empty State */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--spacing-2xl) var(--spacing-md);
+    color: var(--text-light);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--border-color);
+}
+</style>
