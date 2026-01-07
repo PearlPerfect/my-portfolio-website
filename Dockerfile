@@ -1,5 +1,5 @@
 # Stage 1: Builder - Install ALL dependencies and build TypeScript
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 # Copy package files
 COPY package*.json ./
 
-# Install ALL dependencies (including dev)
+# Install ALL dependencies (including dev dependencies)
 RUN npm ci
 
 # Copy source files
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Production - Only production dependencies
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -33,7 +33,9 @@ COPY --from=builder /usr/src/app/dist ./dist
 # Copy EJS views and other static files
 COPY --from=builder /usr/src/app/views ./views
 COPY --from=builder /usr/src/app/public ./public
-COPY --from=builder /usr/src/app/src ./src
+
+# Copy package.json for any runtime scripts if needed
+COPY --from=builder /usr/src/app/package.json ./
 
 # Expose port
 EXPOSE 3000
