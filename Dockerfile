@@ -30,9 +30,12 @@ RUN npm ci --only=production
 
 # Copy built files from builder stage
 COPY --from=builder /usr/src/app/dist ./dist
-# Copy EJS views and other static files
-COPY --from=builder /usr/src/app/views ./views
-COPY --from=builder /usr/src/app/public ./public
+
+# Copy EJS views from src/views (your actual location)
+COPY --from=builder /usr/src/app/src/views ./views
+
+# Copy static files from src/public (your actual location)  
+COPY --from=builder /usr/src/app/src/public ./public
 
 # Copy package.json for any runtime scripts if needed
 COPY --from=builder /usr/src/app/package.json ./
