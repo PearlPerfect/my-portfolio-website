@@ -7,10 +7,8 @@ npm-debug.log
 .gitignore
 README.md
 fly.toml
-Dockerfile
-.dockerignore
 *.log
 coverage
 dist
-src/**/*.ts
-!src/**/*.d.ts
+.vscode
+.idea
