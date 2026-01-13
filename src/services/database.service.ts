@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { Project, IProject } from '../models/project.model';
 import { Technology, ITechnology } from '../models/technology.model';
-import { Contact } from '../models/contact.model'; // Add this import
+import { Contact } from '../models/contact.model';
 import { projects, technologies } from '../data/projects.seed';
 
 export class DatabaseService {
@@ -22,49 +22,44 @@ export class DatabaseService {
 
     try {
       let mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio_db';
-      
-      // Clean up the URI if it has formatting issues
       mongoUri = this.cleanMongoUri(mongoUri);
-      
-      // Log connection attempt (without password)
+      if (!mongoUri.includes('mongodb')) {
+        throw new Error('Invalid MongoDB URI format');
+      }
       const safeUri = this.sanitizeUri(mongoUri);
       console.log(`🔗 Attempting to connect to MongoDB: ${safeUri}`);
       
       await mongoose.connect(mongoUri, {
-        serverSelectionTimeoutMS: 10000, // Timeout after 10 seconds
-        socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+        serverSelectionTimeoutMS: 10000,
+        socketTimeoutMS: 45000,
+        maxPoolSize: 10,
+        minPoolSize: 2,
       });
       
       this.isConnected = true;
       console.log('✅ MongoDB connected successfully');
+      
+      // Log connection details
+      const dbName = mongoose.connection.db?.databaseName;
+      console.log(`📦 Database: ${dbName}`);
+      
     } catch (error: any) {
       console.error('❌ MongoDB connection error:', error.message);
-      console.log('💡 Troubleshooting tips:');
-      console.log('1. Check your MONGODB_URI in .env file');
-      console.log('2. Make sure MongoDB Atlas cluster is running');
-      console.log('3. Check if your IP is whitelisted in Atlas');
-      console.log('4. Try restarting with: MONGODB_URI=mongodb://localhost:27017/portfolio_db');
+      console.log('\n💡 Troubleshooting tips:');
+      console.log('1. Verify MONGODB_URI is set in Fly.io secrets: fly secrets list -a perfectpearl-portfolio');
+      console.log('2. Check MongoDB Atlas cluster is running at https://cloud.mongodb.com');
+      console.log('3. Verify IP 0.0.0.0/0 is whitelisted in Atlas Network Access');
+      console.log('4. Check database user credentials are correct');
+      console.log('5. Ensure connection string includes database name: /portfolio_db?retryWrites=true');
       throw error;
     }
   }
 
   private cleanMongoUri(uri: string): string {
-    // Remove any duplicate "MONGODB_URI=" prefix
     uri = uri.replace(/^MONGODB_URI=/, '');
-    
-    // Trim whitespace
-    uri = uri.trim();
-    
-    // Ensure it starts with proper protocol
+    uri = uri.trim().replace(/^["']|["']$/g, '');
     if (!uri.startsWith('mongodb://') && !uri.startsWith('mongodb+srv://')) {
-      // Try to fix common issues
-      if (uri.includes('mongodb')) {
-        if (uri.includes('srv://')) {
-          uri = 'mongodb+srv://' + uri.split('srv://')[1];
-        } else {
-          uri = 'mongodb://' + uri.split('://')[1];
-        }
-      }
+      throw new Error('MongoDB URI must start with mongodb:// or mongodb+srv://');
     }
     
     return uri;
@@ -90,7 +85,7 @@ export class DatabaseService {
       const techCount = await Technology.countDocuments();
       const contactCount = await Contact.countDocuments();
 
-      if (projectCount > 0 && techCount > 0 && contactCount >= 0) {
+      if (projectCount > 0 && techCount > 0) {
         console.log(`📊 Data already seeded: ${projectCount} projects, ${techCount} technologies, ${contactCount} contacts`);
         return;
       }
@@ -98,57 +93,25 @@ export class DatabaseService {
       console.log('🌱 Starting database seeding...');
 
       // Clear existing data
-      if (projectCount > 0) {
-        console.log('🗑️  Clearing existing projects...');
-        await Project.deleteMany({});
-      }
-      
-      if (techCount > 0) {
-        console.log('🗑️  Clearing existing technologies...');
-        await Technology.deleteMany({});
-      }
-      
-      // Don't clear contacts if they exist (preserve user messages)
+      await Project.deleteMany({});
+      await Technology.deleteMany({});
 
       // Insert projects
       console.log(`📝 Inserting ${projects.length} projects...`);
-      const projectPromises = projects.map(async (projectData, index) => {
-        try {
-          const project = new Project({
-            ...projectData,
-            createdAt: projectData.createdAt || new Date(),
-            updatedAt: projectData.updatedAt || new Date()
-          });
-          await project.save();
-          console.log(`   ✅ Project ${index + 1}/${projects.length}: "${projectData.title}"`);
-        } catch (error: any) {
-          console.error(`   ❌ Error inserting project "${projectData.title}":`, error.message);
-        }
-      });
-      
-      await Promise.all(projectPromises);
+      const insertedProjects = await Project.insertMany(projects);
+      console.log(`   ✅ Inserted ${insertedProjects.length} projects`);
 
       // Insert technologies
-      console.log(`\n📝 Inserting ${technologies.length} technologies...`);
-      const techPromises = technologies.map(async (techData, index) => {
-        try {
-          const technology = new Technology(techData);
-          await technology.save();
-          console.log(`   ✅ Technology ${index + 1}/${technologies.length}: "${techData.name}"`);
-        } catch (error: any) {
-          console.error(`   ❌ Error inserting technology "${techData.name}":`, error.message);
-        }
-      });
-      
-      await Promise.all(techPromises);
+      console.log(`📝 Inserting ${technologies.length} technologies...`);
+      const insertedTechs = await Technology.insertMany(technologies);
+      console.log(`   ✅ Inserted ${insertedTechs.length} technologies`);
 
       console.log('\n✅ Database seeded successfully');
       
       // Verify the seeding
       const finalProjectCount = await Project.countDocuments();
       const finalTechCount = await Technology.countDocuments();
-      const finalContactCount = await Contact.countDocuments();
-      console.log(`📊 Final counts: ${finalProjectCount} projects, ${finalTechCount} technologies, ${finalContactCount} contacts`);
+      console.log(`📊 Final counts: ${finalProjectCount} projects, ${finalTechCount} technologies, ${contactCount} contacts`);
 
     } catch (error: any) {
       console.error('❌ Error seeding database:', error.message);
