@@ -252,8 +252,8 @@ export const projects: Partial<IProject>[] = [
     ],
     technologies: ['Node.js', 'TypeScript', 'Express', 'EJS', 'Swagger', 'PostgreSQL'],
     status: 'completed',
-    githubUrl: 'https://github.com/PearlPerfect/backend-portfolio',
-    liveDemoUrl: 'https://your-portfolio.onrender.com/docs',
+    githubUrl: 'https://github.com/PearlPerfect/portfolio-site-',
+    // liveDemoUrl: 'https://your-portfolio.onrender.com/docs',
     category: 'web',
     complexity: 'intermediate',
     stage: 9,
@@ -265,7 +265,34 @@ export const projects: Partial<IProject>[] = [
 
   // Personal Projects
   {
-    id: 9,
+  id: 9,
+  title: 'Weather Forecast Application',
+  slug: 'weather-forecast-app',
+  description: 'Real-time weather app with 5-day forecast and geolocation',
+  longDescription: 'A responsive weather application built with vanilla JavaScript that provides current weather conditions and 5-day forecasts. Features geolocation support, unit conversion, and local storage for recent searches using OpenWeatherMap API.',
+  features: [
+    'Real-time weather data from OpenWeatherMap API',
+    'Automatic geolocation detection',
+    '5-day weather forecast with detailed metrics',
+    'Dynamic weather icons based on conditions',
+    'Celsius/Fahrenheit unit toggle',
+    'Recent searches with localStorage',
+    'Responsive design for all devices',
+    'Detailed metrics (humidity, wind, pressure, visibility)'
+  ],
+  technologies: ['HTML5', 'CSS3', 'JavaScript', 'OpenWeatherMap API', 'Geolocation API', 'LocalStorage'],
+  status: 'completed',
+  githubUrl: 'https://github.com/PearlPerfect/WeatherApp',
+  liveDemoUrl: 'https://classy-speculoos-414147.netlify.app/',
+  category: 'web',
+  complexity: 'beginner',
+  type: 'personal',
+  imageUrl: '/images/projects/weather-app.png',
+  createdAt: new Date('2025-01-07'),
+  updatedAt: new Date('2026-01-07')
+},
+  {
+    id: 10,
     title: 'E-commerce Platform',
     slug: 'ecommerce-platform',
     description: 'Full-stack e-commerce platform with payment integration',
@@ -283,7 +310,7 @@ export const projects: Partial<IProject>[] = [
     technologies: ['Node.js', 'TypeScript', 'Express', 'React', 'PostgreSQL', 'Redis', 'Docker', 'Stripe'],
     status: 'in-progress',
     githubUrl: 'https://github.com/PearlPerfect/ecommerce-platform',
-    liveDemoUrl: 'https://demo-ecommerce.example.com',
+    // liveDemoUrl: 'https://demo-ecommerce.example.com',
     category: 'web',
     complexity: 'advanced',
     type: 'personal',
@@ -293,7 +320,7 @@ export const projects: Partial<IProject>[] = [
       '/images/screenshots/ecommerce-2.png',
       '/images/screenshots/ecommerce-3.png'
     ],
-    videoDemoUrl: 'https://youtube.com/your-demo-video',
+    // videoDemoUrl: 'https://youtube.com/your-demo-video',
     createdAt: new Date('2026-01-02'),
     updatedAt: new Date('2026-01-02'),
     highlights: [
@@ -314,7 +341,7 @@ export const projects: Partial<IProject>[] = [
     ]
   },
   {
-    id: 10,
+    id: 11,
     title: 'Task Management App',
     slug: 'task-management-app',
     description: 'Real-time collaborative task management application',
@@ -331,7 +358,7 @@ export const projects: Partial<IProject>[] = [
     technologies: ['Node.js', 'Socket.io', 'MongoDB', 'React Native', 'AWS S3'],
     status: 'in-progress',
     githubUrl: 'https://github.com/PearlPerfect/task-management',
-    liveDemoUrl: 'https://tasks.example.com',
+    // liveDemoUrl: 'https://tasks.example.com',
     category: 'web',
     complexity: 'intermediate',
     type: 'personal',
@@ -340,7 +367,7 @@ export const projects: Partial<IProject>[] = [
     updatedAt: new Date('2025-12-20')
   },
   {
-    id: 11,
+    id: 12,
     title: 'AI Content Generator',
     slug: 'ai-content-generator',
     description: 'AI-powered content generation platform',
@@ -364,7 +391,46 @@ export const projects: Partial<IProject>[] = [
     updatedAt: new Date('2024-03-01')
   },
   {
-    id: 12,
+  id: 13,
+  title: 'Expense Tracker',
+  slug: 'expense-tracker-app',
+  description: 'Modern expense tracking application with smart categorization and analytics',
+  longDescription: 'A comprehensive expense tracking application built with React and Tailwind CSS. Features intelligent categorization, visual summaries, filtering capabilities, and persistent local storage. Track your spending habits, analyze expenses by category, and maintain better financial awareness with an intuitive, responsive interface.',
+  features: [
+    'Smart expense categorization',
+    'Visual summary dashboard',
+    'Category-based filtering',
+    'Persistent local storage',
+    'Monthly spending analytics',
+    'Top category insights',
+    'Responsive mobile design',
+    'Date tracking and selection',
+    'Quick expense deletion',
+    'Real-time calculations',
+    'Intuitive form validation'
+  ],
+  technologies: [
+    'React 19',
+    'Vite',
+    'Tailwind CSS 4',
+    'JavaScript ES6+',
+    'Lucide React',
+    'date-fns',
+    'LocalStorage API',
+    'CSS3'
+  ],
+  status: 'completed',
+  githubUrl: 'https://github.com/PearlPerfect/web-expense-tracker',
+  liveDemoUrl: 'https://gleaming-dragon-75d598.netlify.app/',
+  category: 'web',
+  complexity: 'beginner',
+  type: 'personal',
+  imageUrl: '/images/projects/expense-tracker.png',
+  createdAt: new Date('2026-01-07'),
+  updatedAt: new Date('2026-01-07'),
+},
+  {
+    id: 14,
     title: 'Mobile Expense Tracker',
     slug: 'mobile-expense-tracker',
     description: 'Cross-platform mobile app for expense tracking',
@@ -378,7 +444,7 @@ export const projects: Partial<IProject>[] = [
       'Biometric authentication'
     ],
     technologies: ['React Native', 'Expo', 'Firebase', 'Redux', 'Chart.js'],
-    status: 'completed',
+    status: 'in-progress',
     githubUrl: 'https://github.com/PearlPerfect/expense-tracker',
     category: 'mobile',
     complexity: 'intermediate',
@@ -388,7 +454,7 @@ export const projects: Partial<IProject>[] = [
     updatedAt: new Date('2023-11-05')
   },
   {
-    id: 13,
+    id: 15,
     title: 'DevOps Automation Tools',
     slug: 'devops-automation-tools',
     description: 'Collection of DevOps automation scripts and tools',
@@ -412,7 +478,7 @@ export const projects: Partial<IProject>[] = [
     updatedAt: new Date('2026-01-02')
   },
   {
-    id: 14,
+    id: 16,
     title: 'Healthcare Management System',
     slug: 'healthcare-management-system',
     description: 'Comprehensive healthcare management system for clinics',
@@ -428,7 +494,7 @@ export const projects: Partial<IProject>[] = [
     ],
     technologies: ['python', 'Django', 'React', 'MySQL', 'AWS', 'Docker'],
     status: 'in-progress',
-    liveDemoUrl: 'https://healthcare-client.example.com',
+    // liveDemoUrl: 'https://healthcare-client.example.com',
     category: 'web',
     complexity: 'advanced',
     type: 'client',
@@ -443,7 +509,7 @@ export const projects: Partial<IProject>[] = [
     ]
   },
   {
-    id: 15,
+    id: 17,
     title: 'Real Estate Platform',
     slug: 'real-estate-platform',
     description: 'Real estate listing and management platform',
@@ -458,7 +524,7 @@ export const projects: Partial<IProject>[] = [
     ],
     technologies: ['Node.js', 'NestJS', 'Angular', 'PostgreSQL', 'Firebase', 'Mapbox'],
     status: 'in-progress',
-    liveDemoUrl: 'https://realestate-client.example.com',
+    // liveDemoUrl: 'https://realestate-client.example.com',
     category: 'web',
     complexity: 'advanced',
     type: 'client',
@@ -475,9 +541,10 @@ export const technologies: Partial<ITechnology>[] = [
   { name: 'Express', icon: 'express', category: 'backend', proficiency: 5, order: 3 },
   { name: 'NestJS', icon: 'nestjs', category: 'backend', proficiency: 4, order: 4 },
   { name: 'Python', icon: 'python', category: 'backend', proficiency: 4, order: 5 },
-  { name: 'FastAPI', icon: 'fastapi', category: 'backend', proficiency: 3, order: 6 },
-  { name: 'Java', icon: 'java', category: 'backend', proficiency: 2, order: 7 },
-  { name: 'Spring Boot', icon: 'spring', category: 'backend', proficiency: 1, order: 8 },
+  {name: 'Django', icon: 'django', category: 'backend', proficiency: 3, order: 6 },
+  { name: 'FastAPI', icon: 'fastapi', category: 'backend', proficiency: 2, order: 7 },
+  { name: 'Java', icon: 'java', category: 'backend', proficiency: 2, order: 8 },
+  { name: 'Spring Boot', icon: 'spring', category: 'backend', proficiency: 1, order: 9 },
   
   // Frontend
   { name: 'HTML', icon: 'html5', category: 'frontend', proficiency: 5, order: 1 },
@@ -497,15 +564,15 @@ export const technologies: Partial<ITechnology>[] = [
   { name: 'Flutter', icon: 'flutter', category: 'mobile', proficiency: 1, order: 3 },
   
   // Database
-  { name: 'PostgreSQL', icon: 'postgresql', category: 'database', proficiency: 5, order: 1 },
-  { name: 'MongoDB', icon: 'mongodb', category: 'database', proficiency: 5, order: 2 },
-  { name: 'MySQL', icon: 'mysql', category: 'database', proficiency: 5, order: 3 },
+  { name: 'PostgreSQL', icon: 'postgresql', category: 'database', proficiency: 4.5, order: 1 },
+  { name: 'MongoDB', icon: 'mongodb', category: 'database', proficiency: 4.5, order: 2 },
+  { name: 'MySQL', icon: 'mysql', category: 'database', proficiency: 4.5, order: 3 },
   { name: 'Redis', icon: 'redis', category: 'database', proficiency: 4, order: 4 },
   { name: 'Firebase', icon: 'firebase', category: 'database', proficiency: 4, order: 5 },
-  { name: 'SQLite', icon: 'sqlite', category: 'database', proficiency: 5, order: 6 },
+  { name: 'SQLite', icon: 'sqlite', category: 'database', proficiency: 4.5, order: 6 },
   { name: 'TypeORM', icon: 'typeorm', category: 'database', proficiency: 4, order: 7 },
   { name: 'Prisma', icon: 'prisma', category: 'database', proficiency: 4, order: 8 },
-  {name: 'Supabase', icon: 'supabase', category: 'database', proficiency: 5, order: 9 },
+  {name: 'Supabase', icon: 'supabase', category: 'database', proficiency: 4.5, order: 9 },
   
   // Cloud & DevOps
   { name: 'AWS', icon: 'aws', category: 'cloud', proficiency: 3, order: 1 },
@@ -516,9 +583,9 @@ export const technologies: Partial<ITechnology>[] = [
   
   // Tools
   { name: 'Git', icon: 'git', category: 'tool', proficiency: 5, order: 1 },
-  { name: 'Webpack', icon: 'webpack', category: 'tool', proficiency: 4, order: 2 },
-  { name: 'Jest', icon: 'jest', category: 'tool', proficiency: 4, order: 3 },
-  { name: 'Cypress', icon: 'cypress', category: 'tool', proficiency: 3, order: 4 },
+  { name: 'Webpack', icon: 'webpack', category: 'tool', proficiency: 2.5, order: 2 },
+  { name: 'Jest', icon: 'jest', category: 'tool', proficiency: 3, order: 3 },
+  { name: 'Cypress', icon: 'cypress', category: 'tool', proficiency: 2, order: 4 },
   { name: 'Socket.io', icon: 'socketio', category: 'tool', proficiency: 1, order: 5 },
   
   // AI/ML
