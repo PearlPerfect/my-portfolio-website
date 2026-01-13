@@ -135,7 +135,7 @@ class App {
         await this.dbService.seedData();
       }
 
-      const PORT = process.env.PORT || 3000;
+      const PORT = Number(process.env.PORT) || 3000;
       const HOST = '0.0.0.0'; // Important for Fly.io
       
       this.app.listen(PORT, HOST, () => {
