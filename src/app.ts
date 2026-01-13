@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import session from 'express-session';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import expressEjsLayouts from 'express-ejs-layouts'; // Add this import
+import expressEjsLayouts from 'express-ejs-layouts';
 
 import routes from './routes';
 import { DatabaseService } from './services/database.service';
@@ -28,7 +28,7 @@ class App {
     // CORS configuration
     this.app.use(cors({
       origin: process.env.NODE_ENV === 'production' 
-        ? ['https://yourdomain.com'] 
+        ? ['https://perfectpearl-portfolio.fly.dev'] 
         : ['http://localhost:3000'],
       credentials: true
     }));
@@ -48,14 +48,14 @@ class App {
       }
     }));
 
-    // Static files
-    this.app.use(express.static(path.join(__dirname, 'public')));
+    // Static files - point to src/public since views are there
+    this.app.use(express.static(path.join(__dirname, '../src/public')));
 
-    // View engine setup with layouts
-    this.app.use(expressEjsLayouts); // Enable EJS layouts
+    // View engine setup with layouts - point to src/views
+    this.app.use(expressEjsLayouts);
     this.app.set('view engine', 'ejs');
-    this.app.set('views', path.join(__dirname, 'views'));
-    this.app.set('layout', 'layouts/main'); // Default layout
+    this.app.set('views', path.join(__dirname, '../src/views'));
+    this.app.set('layout', 'layouts/main');
 
     // Global variables for views
     this.app.use((req: Request, res: Response, next: NextFunction) => {
@@ -64,6 +64,10 @@ class App {
       res.locals.year = new Date().getFullYear();
       next();
     });
+
+    // Debug logging for paths (remove after confirming it works)
+    console.log('📂 Views directory:', path.join(__dirname, '../src/views'));
+    console.log('📂 Public directory:', path.join(__dirname, '../src/public'));
   }
 
   private initializeRoutes(): void {
@@ -75,7 +79,8 @@ class App {
         status: 'healthy',
         timestamp: new Date().toISOString(),
         uptime: process.uptime(),
-        database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
+        database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
+        environment: process.env.NODE_ENV || 'development'
       });
     });
   }
@@ -87,7 +92,7 @@ class App {
         title: 'Page Not Found',
         message: 'The page you are looking for does not exist.',
         error: {},
-        layout: 'layouts/error' // Use error layout
+        layout: 'layouts/error'
       });
     });
 
@@ -100,12 +105,22 @@ class App {
         ? 'Something went wrong!'
         : err.message;
 
-      res.status(statusCode).render('error', {
-        title: 'Error',
-        message,
-        error: process.env.NODE_ENV === 'development' ? err : {},
-        layout: 'layouts/error' // Use error layout
-      });
+      // If rendering fails, send JSON response
+      try {
+        res.status(statusCode).render('error', {
+          title: 'Error',
+          message,
+          error: process.env.NODE_ENV === 'development' ? err : {},
+          layout: 'layouts/error'
+        });
+      } catch (renderError) {
+        console.error('Error rendering error page:', renderError);
+        res.status(statusCode).json({
+          status: 'error',
+          message,
+          error: process.env.NODE_ENV === 'development' ? err.stack : undefined
+        });
+      }
     });
   }
 
@@ -114,14 +129,17 @@ class App {
       // Connect to database
       await this.dbService.connect();
       
-      // Seed data if needed
+      // Seed data if needed (only in non-production)
       if (process.env.NODE_ENV !== 'production') {
+        console.log('🌱 Seeding database...');
         await this.dbService.seedData();
       }
 
       const PORT = process.env.PORT || 3000;
-      this.app.listen(PORT, () => {
-        console.log(`🚀 Server is running on http://localhost:${PORT}`);
+      const HOST = '0.0.0.0'; // Important for Fly.io
+      
+      this.app.listen(PORT, HOST, () => {
+        console.log(`🚀 Server is running on http://${HOST}:${PORT}`);
         console.log(`📁 Environment: ${process.env.NODE_ENV || 'development'}`);
         console.log(`🗄️  Database: ${mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected'}`);
       });
